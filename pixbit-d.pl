@@ -7,6 +7,7 @@
 
 %Predicados
 %pixbit-d(X, Y, Bit, D, P).
+%ispixbit-d(P).
 %getX(P, X).
 %getY(P, Y).
 %getBit(P, Bit).
