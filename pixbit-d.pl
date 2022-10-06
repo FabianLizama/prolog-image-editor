@@ -1,3 +1,5 @@
+:- module(pixbit-d, [pixbit-d/5, ispixbit-d/1]).
+
 %Dominios:
 % X: int >=0
 % Y: int >=0
@@ -8,10 +10,10 @@
 %Predicados
 %pixbit-d(X, Y, Bit, D, P).
 %ispixbit-d(P).
-%getX(P, X).
-%getY(P, Y).
+%getXb(P, X).
+%getYb(P, Y).
 %getBit(P, Bit).
-%getD(P, D).
+%getDb(P, D).
 
 
 %Metas
@@ -39,7 +41,7 @@ getY([_, Y|_], Y).
 
 getBit([_, _, Bit|_], Bit).
 
-getD([_, _, _, D|_], D).
+getDb([_, _, _, D|_], D).
 
 %Modificadores
 
