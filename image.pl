@@ -47,6 +47,19 @@ imageIsBitmap([_, _, _, [P1|_]|_]):-
 imageIsPixmap([_, _, _, [P1|_]|_]):-
 	ispixrgbd(P1).
 
-
 imageIsHexmap([_, _, _, [P1|_]|_]):-
 	ispixhexd(P1).
+
+abs(N1, No):-
+	(integer(N1),
+	(N1 < 0, No = (N1 * -1));
+	(N1 >= 0, No = N1).
+
+pixFlipH(Pin, Pout):-
+	(ispixbitd(Pin), );
+	(ispixrgbd(Pin), );
+	(ispixhexd(Pin), ).
+
+%imageFlipH([S, W, H, [P1in|Prin]], [S, W, H, [P1out|Prout]]):-
+%	listavacia().
+

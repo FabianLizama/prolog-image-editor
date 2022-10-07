@@ -21,6 +21,9 @@
 % getBit(P, Bit).
 % getDb(P, D).
 
+% Modificadores
+% setX(P, X, P).
+
 
 % Metas
 
@@ -50,5 +53,7 @@ getBit([_, _, Bit|_], Bit).
 getDb([_, _, _, D|_], D).
 
 % Modificadores
+setXb([_, Y, Bit, D], Xout, [Xout, Y, Bit, D]).
+setYb([X, _, Bit, D], Yout, [X, Yout, Bit, D]).
 
 % Otros
