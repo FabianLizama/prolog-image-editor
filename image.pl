@@ -1,31 +1,52 @@
-:- use_module(pixbit-d).
+:- use_module(pixbitd).
+:- use_module(pixrgbd).
+:- use_module(pixhexd).
 
-%Dominios
+% Dominios
 % I: image
-% Pb: pixbit-d
-% Pr: pixrgb-d
-% Ph: pixhex-d
 % Pl: list
 % W: int
 % H: int
 % C: string
 
-%Predicados
-%realImage(C, W, H, Pl, I).
-%image(W, H, Pl, I).
-%Metas
+% Predicados
 
-%Clausulas
+% Constructores
+% backImage(C, W, H, Pl, I).
+% image(W, H, Pl, I).
 
-%Constructor
-realImage(C, W, H, [P1|Pl], [C, W, H, [P1|Pl]]):-
+% Pertenencia
+% imageIsBitmap(I).
+% imageIsPixmap(I).
+% imageIsHexmap(I).
+
+% Metas
+
+% Clausulas
+
+% Constructores
+% Función constructora del TDA image
+% Dominio: (string X int X int x list X list)
+% Recorrido: image
+backImage(C, W, H, [P1|Pr], [C, W, H, [P1|Pr]]):-
 	string(C),
-	int(W),
-	int(H),
+	integer(W),
+	integer(H),
 	W >= 0,
 	H >= 0,
-	(ispixbit-d(P1); ispixrgb-d(P1); ispixhex-d(P1)). %Por enunciado se asume que la lista es homogenea, por lo que solo se comprueba el primer elemento
+	(ispixbitd(P1); ispixrgbd(P1); ispixhexd(P1)). %Por enunciado se asume que la lista es homogenea, por lo que solo se comprueba el primer elemento
 
 image(W, H, Pl, I):-
-	realImage("", W, H, Pl, I).
+	backImage("", W, H, Pl, I).
 	
+
+% Pertenencia
+imageIsBitmap([_, _, _, [P1|_]|_]):-
+	ispixbitd(P1).
+
+imageIsPixmap([_, _, _, [P1|_]|_]):-
+	ispixrgbd(P1).
+
+
+imageIsHexmap([_, _, _, [P1|_]|_]):-
+	ispixhexd(P1).
