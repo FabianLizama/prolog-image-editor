@@ -1,6 +1,6 @@
-:- use_module(pixbitd).
-:- use_module(pixrgbd).
-:- use_module(pixhexd).
+:- use_module(pixbit).
+:- use_module(pixrgb).
+:- use_module(pixhex).
 
 % Dominios
 % I: image
@@ -25,8 +25,9 @@
 % Clausulas
 
 % Constructores
-% Función constructora del TDA image
-% Dominio: (string X int X int x list X list)
+
+% Predicado constructor del TDA image
+% Dominio: string X int X int x list X list
 % Recorrido: image
 backImage(C, W, H, [P1|Pr], [C, W, H, [P1|Pr]]):-
 	string(C),
@@ -34,32 +35,51 @@ backImage(C, W, H, [P1|Pr], [C, W, H, [P1|Pr]]):-
 	integer(H),
 	W >= 0,
 	H >= 0,
-	(ispixbitd(P1); ispixrgbd(P1); ispixhexd(P1)). %Por enunciado se asume que la lista es homogenea, por lo que solo se comprueba el primer elemento
+	(ispixbit(P1); ispixrgb(P1); ispixhex(P1)). %Por enunciado se asume que la lista es homogenea, por lo que solo se comprueba el primer elemento
 
+% predicado constructor del TDA image
+% Dominio: int X int x list X list
+% Recorrido: image
 image(W, H, Pl, I):-
 	backImage("", W, H, Pl, I).
 	
 
 % Pertenencia
 imageIsBitmap([_, _, _, [P1|_]|_]):-
-	ispixbitd(P1).
+	ispixbit(P1).
 
 imageIsPixmap([_, _, _, [P1|_]|_]):-
-	ispixrgbd(P1).
+	ispixrgb(P1).
 
 imageIsHexmap([_, _, _, [P1|_]|_]):-
-	ispixhexd(P1).
+	ispixhex(P1).
 
-abs(N1, No):-
-	(integer(N1),
-	(N1 < 0, No = (N1 * -1));
-	(N1 >= 0, No = N1).
 
-pixFlipH(Pin, Pout):-
-	(ispixbitd(Pin), );
-	(ispixrgbd(Pin), );
-	(ispixhexd(Pin), ).
+pixFlipH(Pin, W, Pout):-
+	ispixbit(Pin),
+	getXb(Pin, X),
+	Valor is abs(X-(W-1)),
+	setXb(Pin, Valor, Pout).
 
-%imageFlipH([S, W, H, [P1in|Prin]], [S, W, H, [P1out|Prout]]):-
-%	listavacia().
+pixFlipH(Pin, W, Pout):-
+	ispixrgb(Pin),
+	getXr(Pin, X),
+	Valor is abs(X-(W-1)),
+	setXr(Pin, Valor, Pout).
 
+pixFlipH(Pin, W, Pout):-
+	ispixhex(Pin),
+	getXh(Pin, X),
+	Valor is abs(X-(W-1)),
+	setXh(Pin, Valor, Pout).
+
+
+
+imageFlipH([S, W, H, [P1in|[]]], [S, W, H, [P1out|[]]]):-
+	pixFlipH(P1in, W, P1out).
+
+imageFlipH([S, W, H, [P1in|Prin]], [S, W, H, [P1out|Prout]]):-
+	pixFlipH(P1in, W, P1out),
+	imageFlipH()
+
+% Otros
