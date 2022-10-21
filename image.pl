@@ -86,3 +86,5 @@ imageFlipH([C, W, H, Plin|_], [C, W, H, Plout]):-
 	maplist(pixFlipH(W), Plin, Plout).
 
 % Otros
+%maplist(pixFlipH(W), Plin, Plout).
+%maplist(pixFlipH, Plin, Plout).
