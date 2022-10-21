@@ -86,6 +86,3 @@ imageFlipH([C, W, H, Plin|_], [C, W, H, Plout]):-
 	maplist(pixFlipH(W), Plin, Plout).
 
 % Otros
-
-suma(A, C, B):-
-	B is A+C.
