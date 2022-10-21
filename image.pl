@@ -24,6 +24,26 @@
 
 % Clausulas
 
+
+% Auxiliares que operan sobre pixbit pixrgb y pixhex
+
+getX(Pix, X):-
+	(ispixbit(Pix), getXb(Pix, X));
+	(ispixrgb(Pix), getXr(Pix, X));
+	(ispixhex(Pix), getXh(Pix, X)).
+
+
+getY(Pix, Y):-
+	(ispixbit(Pix), getYb(Pix, Y));
+	(ispixrgb(Pix), getYr(Pix, Y));
+	(ispixhex(Pix), getYh(Pix, Y)).
+
+
+getD(Pix, D):-
+	(ispixbit(Pix), getDb(Pix, D));
+	(ispixrgb(Pix), getDr(Pix, D));
+	(ispixhex(Pix), getDh(Pix, D)).
+
 % Constructores
 
 % Predicado constructor del TDA image
@@ -57,29 +77,15 @@ imageIsHexmap([_, _, _, [P1|_]|_]):-
 
 pixFlipH(Pin, W, Pout):-
 	ispixbit(Pin),
-	getXb(Pin, X),
-	Valor is abs(X-(W-1)),
-	setXb(Pin, Valor, Pout).
-
-pixFlipH(Pin, W, Pout):-
-	ispixrgb(Pin),
-	getXr(Pin, X),
-	Valor is abs(X-(W-1)),
-	setXr(Pin, Valor, Pout).
-
-pixFlipH(Pin, W, Pout):-
-	ispixhex(Pin),
-	getXh(Pin, X),
-	Valor is abs(X-(W-1)),
-	setXh(Pin, Valor, Pout).
+	getX(Pin, X),
+	setXb(Pin, Valor, Pout),
+	Valor is abs(X-(W-1)).
 
 
-
-imageFlipH([S, W, H, [P1in|[]]], [S, W, H, [P1out|[]]]):-
-	pixFlipH(P1in, W, P1out).
-
-imageFlipH([S, W, H, [P1in|Prin]], [S, W, H, [P1out|Prout]]):-
-	pixFlipH(P1in, W, P1out),
-	imageFlipH()
+imageFlipH([C, W, H, Plin|_], [C, W, H, Plout]):-
+	maplist(pixFlipH(W), Plin, Plout).
 
 % Otros
+
+suma(A, C, B):-
+	B is A+C.
