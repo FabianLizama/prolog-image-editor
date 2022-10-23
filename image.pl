@@ -110,3 +110,7 @@ pixFlipV(Pin, H, Pout):-
 	getY(Pin, Y),
 	setYb(Pin, Valor, Pout),
 	Valor is abs(Y-(H-1)).
+
+imageFlipV([C, W, H, Plin|_], Iout):-
+	backImage(C, W, H, Plout, Iout),
+	maplist(pixFlipV(W), Plin, Plout).
