@@ -44,6 +44,23 @@ getD(Pix, D):-
 	(ispixrgb(Pix), getDr(Pix, D));
 	(ispixhex(Pix), getDh(Pix, D)).
 
+setX(Pix, X):-
+	(ispixbit(Pix), setXb(Pix, X));
+	(ispixrgb(Pix), setXr(Pix, X));
+	(ispixhex(Pix), setXh(Pix, X)).
+
+
+setY(Pix, Y):-
+	(ispixbit(Pix), setYb(Pix, Y));
+	(ispixrgb(Pix), setYr(Pix, Y));
+	(ispixhex(Pix), setYh(Pix, Y)).
+
+
+setD(Pix, D):-
+	(ispixbit(Pix), setDb(Pix, D));
+	(ispixrgb(Pix), setDr(Pix, D));
+	(ispixhex(Pix), setDh(Pix, D)).
+
 % Constructores
 
 % Predicado constructor del TDA image
@@ -76,15 +93,20 @@ imageIsHexmap([_, _, _, [P1|_]|_]):-
 
 
 pixFlipH(Pin, W, Pout):-
-	ispixbit(Pin),
 	getX(Pin, X),
-	setXb(Pin, Valor, Pout),
+	setX(Pin, Valor, Pout),
 	Valor is abs(X-(W-1)).
 
 
-imageFlipH([C, W, H, Plin|_], [C, W, H, Plout]):-
+imageFlipH([C, W, H, Plin|_], Iout):-
+	backImage(C, W, H, Plout, Iout),
 	maplist(pixFlipH(W), Plin, Plout).
 
 % Otros
 %maplist(pixFlipH(W), Plin, Plout).
 %maplist(pixFlipH, Plin, Plout).
+
+pixFlipV(Pin, H, Pout):-
+	getY(Pin, Y),
+	setYb(Pin, Valor, Pout),
+	Valor is abs(Y-(H-1)).
