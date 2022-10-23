@@ -82,12 +82,21 @@ image(W, H, Pl, I):-
 	
 
 % Pertenencia
+% predicado de pertenencia
+% Dominio: image
+% Recorrido: bool
 imageIsBitmap([_, _, _, [P1|_]|_]):-
 	ispixbit(P1).
 
+% predicado de pertenencia
+% Dominio: image
+% Recorrido: bool
 imageIsPixmap([_, _, _, [P1|_]|_]):-
 	ispixrgb(P1).
 
+% predicado de pertenencia
+% Dominio: image
+% Recorrido: bool
 imageIsHexmap([_, _, _, [P1|_]|_]):-
 	ispixhex(P1).
 
