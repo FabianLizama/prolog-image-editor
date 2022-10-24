@@ -44,28 +44,31 @@ getD(Pix, D):-
 	(ispixrgb(Pix), getDr(Pix, D));
 	(ispixhex(Pix), getDh(Pix, D)).
 
-setX(Pix, X):-
-	(ispixbit(Pix), setXb(Pix, X));
-	(ispixrgb(Pix), setXr(Pix, X));
-	(ispixhex(Pix), setXh(Pix, X)).
+setX(Pix, X, Pout):-
+	(ispixbit(Pix), setXb(Pix, X, Pout));
+	(ispixrgb(Pix), setXr(Pix, X, Pout));
+	(ispixhex(Pix), setXh(Pix, X, Pout)).
 
 
-setY(Pix, Y):-
-	(ispixbit(Pix), setYb(Pix, Y));
-	(ispixrgb(Pix), setYr(Pix, Y));
-	(ispixhex(Pix), setYh(Pix, Y)).
+setY(Pix, Y, Pout):-
+	(ispixbit(Pix), setYb(Pix, Y, Pout));
+	(ispixrgb(Pix), setYr(Pix, Y, Pout));
+	(ispixhex(Pix), setYh(Pix, Y, Pout)).
 
 
-setD(Pix, D):-
-	(ispixbit(Pix), setDb(Pix, D));
-	(ispixrgb(Pix), setDr(Pix, D));
-	(ispixhex(Pix), setDh(Pix, D)).
+setD(Pix, D, Pout):-
+	(ispixbit(Pix), setDb(Pix, D, Pout));
+	(ispixrgb(Pix), setDr(Pix, D, Pout));
+	(ispixhex(Pix), setDh(Pix, D, Pout)).
 
 % Constructores
 
 % Predicado constructor del TDA image
 % Dominio: string X int X int x list X list
 % Recorrido: image
+
+backImage(C, W, H, [], [C, W, H, []]).
+
 backImage(C, W, H, [P1|Pr], [C, W, H, [P1|Pr]]):-
 	string(C),
 	integer(W),
@@ -106,20 +109,9 @@ pixFlipH(Pin, W, Pout):-
 	setX(Pin, Valor, Pout),
 	Valor is abs(X-(W-1)).
 
+imageFlipH([C, W, H, []|_], [C, W, H, []]).
 
-imageFlipH([C, W, H, Plin|_], Iout):-
-	backImage(C, W, H, Plout, Iout),
-	maplist(pixFlipH(W), Plin, Plout).
+imageFlipH([C, W, H, [P1|Pl]|_], [C, W, H, [P1out|Plout]]):-
+	pixFlipH(P1, W, P1out),
+	imageFlipH([C, W, H, Pl], [C, W, H, Plout]).
 
-% Otros
-%maplist(pixFlipH(W), Plin, Plout).
-%maplist(pixFlipH, Plin, Plout).
-
-pixFlipV(Pin, H, Pout):-
-	getY(Pin, Y),
-	setYb(Pin, Valor, Pout),
-	Valor is abs(Y-(H-1)).
-
-imageFlipV([C, W, H, Plin|_], Iout):-
-	backImage(C, W, H, Plout, Iout),
-	maplist(pixFlipV(W), Plin, Plout).
