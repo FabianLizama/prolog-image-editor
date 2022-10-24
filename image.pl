@@ -115,3 +115,13 @@ imageFlipH([C, W, H, [P1|Pl]|_], [C, W, H, [P1out|Plout]]):-
 	pixFlipH(P1, W, P1out),
 	imageFlipH([C, W, H, Pl], [C, W, H, Plout]).
 
+pixFlipV(Pin, H, Pout):-
+	getY(Pin, Y),
+	setY(Pin, Valor, Pout),
+	Valor is abs(Y-(H-1)).
+
+imageFlipV([C, W, H, []|_], [C, W, H, []]).
+
+imageFlipV([C, W, H, [P1|Pl]|_], [C, W, H, [P1out|Plout]]):-
+	pixFlipV(P1, H, P1out),
+	imageFlipV([C, W, H, Pl], [C, W, H, Plout]).
