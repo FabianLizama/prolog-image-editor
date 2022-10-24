@@ -8,6 +8,8 @@
 % W: int
 % H: int
 % C: string
+% X: int
+% Y: int
 
 % Predicados
 
@@ -20,6 +22,9 @@
 % imageIsPixmap(I).
 % imageIsHexmap(I).
 
+
+% Modificadores
+% imageCrop(I, X, Y, X, Y, I).
 % Metas
 
 % Clausulas
@@ -125,3 +130,7 @@ imageFlipV([C, W, H, []|_], [C, W, H, []]).
 imageFlipV([C, W, H, [P1|Pl]|_], [C, W, H, [P1out|Plout]]):-
 	pixFlipV(P1, H, P1out),
 	imageFlipV([C, W, H, Pl], [C, W, H, Plout]).
+
+%imageCrop([C, Win, Hin, Plin|_], X1, Y1, X2, Y2, [C, Wout, Hout, Plout]):-
+%	Wout is 1+(X2-X1),
+%	Hout is 1+(Y2-Y1),
