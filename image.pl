@@ -26,7 +26,12 @@
 % Modificadores
 % imageCrop(I, X, Y, X, Y, I).
 % Metas
-
+%asd
+%asd
+%asdasd
+%asdasd
+%asda
+%asda
 % Clausulas
 
 
@@ -109,7 +114,7 @@ imageIsHexmap([_, _, _, [P1|_]|_]):-
 	ispixhex(P1).
 
 
-pixFlipH(Pin, W, Pout):-
+pixFlipH(W, Pin, Pout):-
 	getX(Pin, X),
 	setX(Pin, Valor, Pout),
 	Valor is abs(X-(W-1)).
@@ -117,10 +122,10 @@ pixFlipH(Pin, W, Pout):-
 imageFlipH([C, W, H, []|_], [C, W, H, []]).
 
 imageFlipH([C, W, H, [P1|Pl]|_], [C, W, H, [P1out|Plout]]):-
-	pixFlipH(P1, W, P1out),
+	pixFlipH(W, P1, P1out),
 	imageFlipH([C, W, H, Pl], [C, W, H, Plout]).
 
-pixFlipV(Pin, H, Pout):-
+pixFlipV(H, Pin, Pout):-
 	getY(Pin, Y),
 	setY(Pin, Valor, Pout),
 	Valor is abs(Y-(H-1)).
@@ -128,9 +133,35 @@ pixFlipV(Pin, H, Pout):-
 imageFlipV([C, W, H, []|_], [C, W, H, []]).
 
 imageFlipV([C, W, H, [P1|Pl]|_], [C, W, H, [P1out|Plout]]):-
-	pixFlipV(P1, H, P1out),
+	pixFlipV(H, P1, P1out),
 	imageFlipV([C, W, H, Pl], [C, W, H, Plout]).
 
-%imageCrop([C, Win, Hin, Plin|_], X1, Y1, X2, Y2, [C, Wout, Hout, Plout]):-
-%	Wout is 1+(X2-X1),
-%	Hout is 1+(Y2-Y1),
+imageCrop([C, _, _, Plin|_], X1, Y1, X2, Y2, [C, Wout, Hout, Plout]):-
+	Wout is 1+(X2-X1),
+	Hout is 1+(Y2-Y1),
+	include(isCropPix(X1, Y1, X2, Y2), Plin, Pixels),
+	maplist(adjustCropPixel(X1, Y1), Pixels, Plout).
+
+isCropPix(X1, Y1, X2, Y2, Pin):-
+	getX(Pin, Xin),
+	getY(Pin, Yin),
+	Xin >= X1,
+	Yin >= Y1,
+	Xin =< X2,
+	Yin =< Y2.
+
+adjustCropPixel(Xcrop, Ycrop, Pin, Pout):-
+	getX(Pin, Xin),
+	ValorX is Xin-Xcrop,
+	setX(Pin, ValorX, Pix),
+	getY(Pin, Yin),
+	ValorY is Yin-Ycrop,
+	setY(Pix, ValorY, Pout).
+
+imageRGBToHex([C, W, H, Plin|_], [C, W, H, Plout]):-
+	imageIsPixmap([C, W, H, Plin|_]),
+	maplist(pixrgbToPixhex, Plin, Plout).
+
+pixrgbToPixhex([X, Y, R, G, B, D], [X, Y, Hex, D]):-
+	hex_bytes(Hex, [R, G, B]).
+
