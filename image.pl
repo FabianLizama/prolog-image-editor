@@ -157,11 +157,3 @@ adjustCropPixel(Xcrop, Ycrop, Pin, Pout):-
 	getY(Pin, Yin),
 	ValorY is Yin-Ycrop,
 	setY(Pix, ValorY, Pout).
-
-imageRGBToHex([C, W, H, Plin|_], [C, W, H, Plout]):-
-	imageIsPixmap([C, W, H, Plin|_]),
-	maplist(pixrgbToPixhex, Plin, Plout).
-
-pixrgbToPixhex([X, Y, R, G, B, D], [X, Y, Hex, D]):-
-	hex_bytes(Hex, [R, G, B]).
-
