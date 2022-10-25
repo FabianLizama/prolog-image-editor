@@ -178,4 +178,6 @@ pixToHex([X, Y, Content, D], [X, Y, Hex, D]):-
 	(Content = 0, Hex = "000000");
 	(Content = 1, Hex = "ffffff").
 
+initHistogram(Histin, [], []).
 
+initHistogram(Histin, [P1|Plist], [])
