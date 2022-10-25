@@ -113,35 +113,42 @@ imageIsPixmap([_, _, _, [P1|_]|_]):-
 imageIsHexmap([_, _, _, [P1|_]|_]):-
 	ispixhex(P1).
 
-
+%
 pixFlipH(W, Pin, Pout):-
 	getX(Pin, X),
 	setX(Pin, Valor, Pout),
 	Valor is abs(X-(W-1)).
+%
 
 imageFlipH([C, W, H, []|_], [C, W, H, []]).
+%
 
 imageFlipH([C, W, H, [P1|Pl]|_], [C, W, H, [P1out|Plout]]):-
 	pixFlipH(W, P1, P1out),
 	imageFlipH([C, W, H, Pl], [C, W, H, Plout]).
 
+%
 pixFlipV(H, Pin, Pout):-
 	getY(Pin, Y),
 	setY(Pin, Valor, Pout),
 	Valor is abs(Y-(H-1)).
 
+%
 imageFlipV([C, W, H, []|_], [C, W, H, []]).
 
+%
 imageFlipV([C, W, H, [P1|Pl]|_], [C, W, H, [P1out|Plout]]):-
 	pixFlipV(H, P1, P1out),
 	imageFlipV([C, W, H, Pl], [C, W, H, Plout]).
 
+%
 imageCrop([C, _, _, Plin|_], X1, Y1, X2, Y2, [C, Wout, Hout, Plout]):-
 	Wout is 1+(X2-X1),
 	Hout is 1+(Y2-Y1),
 	include(isCropPix(X1, Y1, X2, Y2), Plin, Pixels),
 	maplist(adjustCropPixel(X1, Y1), Pixels, Plout).
 
+%
 isCropPix(X1, Y1, X2, Y2, Pin):-
 	getX(Pin, Xin),
 	getY(Pin, Yin),
