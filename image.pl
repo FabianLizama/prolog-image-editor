@@ -194,9 +194,18 @@ initHistogram(Histin, [], []):-
 
 countHex(HistogramIn, Hexcodes, HistogramOut, HexcodesOut):-
 	getHead(Hexcodes, Hex1), 
-	member([Hex1|_], HistogramIn),
+	member([Hex, N], HistogramIn),
 	selectchk(Hex1, Hexcodes, HexcodesOut),
-	
+	selectchk([Hex, N], HistogramIn, HistogramAux),
+	append([Hex, Nout], HistogramAux, HistogramOut),
+	N is N+1.
+
+countHex(HistogramIn, Hexcodes, HistogramOut, HexcodesOut):-
+	getHead(Hexcods, Hex1),
+	not(member([Hex, N], HistogramIn)),
+	selectchk(Hex1, Hexcodes, HexcodesOut),
+	append([Hex, 0], HistogramOut)
+
 
 
 
