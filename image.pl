@@ -206,6 +206,8 @@ countHex(HistogramIn, Hexcodes, HistogramOut, HexcodesOut):-
 	selectchk(Hex1, Hexcodes, HexcodesOut),
 	append([Hex, 0], HistogramOut)
 
+	%%%%
+
 
 
 
