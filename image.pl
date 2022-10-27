@@ -187,26 +187,23 @@ pixToHex([X, Y, Content, D], [X, Y, Hex, D]):-
 	(Content = 0, Hex = "000000");
 	(Content = 1, Hex = "ffffff").
 
-initHistogram(Histogram, Pixlist, Histout).
+%initHistogram(Histogram, Pixlist, Histout).
 
-initHistogram(Histin, [], []):-
-	maplist(pixToHex, Pixlist, Hexcodes).
+%initHistogram(Histin, [], []).
+%maplist(pixToHex, Pixlist, Hexcodes).
 
-countHex(HistogramIn, Hexcodes, HistogramOut, HexcodesOut):-
-	getHead(Hexcodes, Hex1), 
+% countHex recibe un histograma y una lista de hexcodes por contar, devuelve el histograma y la lista de hexcodes contadas.
+countHex(HistogramIn, Hexcodes, [[Hex, Nout]|HistogramOut], HexcodesOut):-
+	getHead(Hexcodes, Hex1),
 	member([Hex, N], HistogramIn),
 	selectchk(Hex1, Hexcodes, HexcodesOut),
-	selectchk([Hex, N], HistogramIn, HistogramAux),
-	append([Hex, Nout], HistogramAux, HistogramOut),
-	N is N+1.
+	selectchk([Hex, N], HistogramIn, HistogramOut),
+	Nout is N+1.
 
-countHex(HistogramIn, Hexcodes, HistogramOut, HexcodesOut):-
-	getHead(Hexcods, Hex1),
-	not(member([Hex, N], HistogramIn)),
-	selectchk(Hex1, Hexcodes, HexcodesOut),
-	append([Hex, 0], HistogramOut)
-
-	%%%%
+countHex(HistogramIn, Hexcodes, [[Hex1, 0]|HistogramIn], HexcodesOut):-
+	getHead(Hexcodes, Hex1),
+	not(member([Hex1, _], HistogramIn)),
+	selectchk(Hex1, Hexcodes, HexcodesOut).
 
 
 
