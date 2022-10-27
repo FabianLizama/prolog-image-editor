@@ -53,3 +53,6 @@ getDh([_, _, _, D|_], D).
 setXh([_, Y, Hex, D], Xout, [Xout, Y, Hex, D]).
 setYh([X, _, Hex, D], Yout, [X, Yout, Hex, D]).
 % Otros
+imageRGBToHex([C, W, H, Plin|_], [C, W, H, Plout]):-
+	imageIsPixmap([C, W, H, Plin|_]),
+	maplist(pixrgbToPixhex, Plin, Plout).

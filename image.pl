@@ -35,6 +35,8 @@
 % Clausulas
 
 
+getHead([H|_], H).
+
 % Auxiliares que operan sobre pixbit pixrgb y pixhex
 
 getX(Pix, X):-
@@ -185,6 +187,16 @@ pixToHex([X, Y, Content, D], [X, Y, Hex, D]):-
 	(Content = 0, Hex = "000000");
 	(Content = 1, Hex = "ffffff").
 
-initHistogram(Histin, [], []).
+initHistogram(Histogram, Pixlist, Histout).
 
-initHistogram(Histin, [P1|Plist], [])
+initHistogram(Histin, [], []):-
+	maplist(pixToHex, Pixlist, Hexcodes).
+
+countHex(HistogramIn, Hexcodes, HistogramOut, HexcodesOut):-
+	getHead(Hexcodes, Hex1), 
+	member([Hex1|_], HistogramIn),
+	selectchk(Hex1, Hexcodes, HexcodesOut),
+	
+
+
+
