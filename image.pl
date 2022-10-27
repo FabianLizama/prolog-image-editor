@@ -213,5 +213,8 @@ countHex(HistogramIn, Hexcodes, [[Hex1, 0]|HistogramIn], HexcodesOut):-
 	selectchk(Hex1, Hexcodes, HexcodesOut).
 
 
+%%%
+
+
 
 
