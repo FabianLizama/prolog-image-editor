@@ -192,12 +192,19 @@ pixToHex([X, Y, Content, D], [X, Y, Hex, D]):-
 %initHistogram(Histin, [], []).
 %maplist(pixToHex, Pixlist, Hexcodes).
 
+imageToHistogram([C, W, H, Pixlist], Histogram).
+	maplist(pixToHex, Pixlist, Hexcodes),
+	recurHist([], Hexcodes,. 
+
+recurHist(HistogramIn, Hexcodes, HistogramOut):-
+	countHex(HistogramIn, Hexcodes, ).
+
 % countHex recibe un histograma y una lista de hexcodes por contar, devuelve el histograma y la lista de hexcodes contadas.
 countHex(HistogramIn, Hexcodes, [[Hex, Nout]|HistogramOut], HexcodesOut):-
 	getHead(Hexcodes, Hex1),
-	member([Hex, N], HistogramIn),
+	member([Hex1, N], HistogramIn),
 	selectchk(Hex1, Hexcodes, HexcodesOut),
-	selectchk([Hex, N], HistogramIn, HistogramOut),
+	selectchk([Hex1, N], HistogramIn, HistogramOut),
 	Nout is N+1.
 
 countHex(HistogramIn, Hexcodes, [[Hex1, 0]|HistogramIn], HexcodesOut):-
