@@ -1,4 +1,4 @@
-:- module(pixrgb, [pixrgb/7, ispixrgb/1, getXr/2, getYr/2, getR/2, getG/2, getB/2, getDr/2, setXr/3, setYr/3]).
+:- module(pixrgb, [pixrgb/7, ispixrgb/1, getXr/2, getYr/2, getR/2, getG/2, getB/2, getDr/2, setXr/3, setYr/3, getRGBD/2]).
 
 % Dominios:
 % X: int >=0
@@ -61,6 +61,9 @@ getG([_, _, _, G|_], G).
 getB([_, _, _, _, B|_], B).
 
 getDr([_, _, _, _, _, D|_], D).
+
+getRGBD([_, _, R, G, B, D], RGBD):-
+	RGBD = [R, G, B, D].
 
 % Modificadores
 setXr([_, Y, R, G, B, D], Xout, [Xout, Y, R, G, B, D]).

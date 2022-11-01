@@ -40,7 +40,7 @@ pixbit(X, Y, Bit, D, [X, Y, Bit, D]):-
 	(Bit == 0;Bit == 1).
 
 % Pertenencia
-ispixbit([X, Y, Bit, D|_]):-
+ispixbit([X, Y, Bit, D]):-
 	pixbit(X, Y, Bit, D, [X, Y, Bit, D]).
 
 % Selectores
