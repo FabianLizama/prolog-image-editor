@@ -1,0 +1,30 @@
+Requerimientos No Funcionales:
+1. Autoevaluación: 1 Implementación completa sin problemas
+2. Lenguaje: 1 Implementación completa sin problemas
+3. Versión: 1 Implementación completa sin problemas
+4. Standard: 1 Implementación completa sin problemas
+5. Documentación: 1 Implementación completa sin problemas
+6. Organización: 1 Implementación completa sin problemas
+7. Historial: 1 Implementación completa sin problemas
+8. Script de pruebas: 1 Implementación completa sin problemas
+9. Prerrequisitos: 1 Implementación completa sin problemas
+
+Requerimientos Funcionales:
+1. TDAs: 1 Implementación completa sin problemas
+2. TDA image - constructor: 1 Implementación completa sin problemas
+3. TDA image - is bitmap: 1 Implementación completa sin problemas
+4. TDA image - is pixmap: 1 Implementación completa sin problemas
+5. TDA image - is hexmap: 1 Implementación completa sin problemas
+6. TDA image - is compressed: 1 Implementación completa sin problemas
+7. TDA image - flipH: 1 Implementación completa sin problemas
+8. TDA image - flipV: 1 Implementación completa sin problemas
+9. TDA image - crop: 1 Implementación completa sin problemas
+10. TDA image - imgRGB->imgHex: 1 Implementación completa sin problemas
+11. TDA image - to histogram: 1 Implementación completa sin problemas
+12. TDA image - rotate90: 1 Implementación completa sin problemas
+13. TDA image - compress: 1 Implementación completa sin problemas
+14. TDA image - changePixel: 1 Implementación completa sin problemas
+15. TDA image - invertColorRGB: 1 Implementación completa sin problemas
+16. TDA image - image->string: 1 Implementación completa sin problemas
+17. TDA image - depthLayers: 1 Implementación completa sin problemas
+28. TDA image - decompress: 0 No se implementa
