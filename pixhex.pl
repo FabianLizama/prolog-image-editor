@@ -1,4 +1,4 @@
-:- module(pixhex_21081166_LizamaGonzalez, [pixhex/5, ispixhex/1, getXh/2, getYh/2, getHex/2, getDh/2, setXh/3, setYh/3]).
+:- module(pixhex, [pixhex/5, ispixhex/1, getXh/2, getYh/2, getHex/2, getDh/2, setXh/3, setYh/3]).
 %--------------------TDA pixhex--------------------
 % La estructura a utilizar para este TDA es una lista de la siguiente manera:
 % (X, Y, Hex, Depth)

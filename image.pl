@@ -1,6 +1,6 @@
-:- use_module(pixbit_21081166_LizamaGonzalez).
-:- use_module(pixrgb_21081166_LizamaGonzalez).
-:- use_module(pixhex_21081166_LizamaGonzalez).
+:- use_module(pixbit).
+:- use_module(pixrgb).
+:- use_module(pixhex).
 
 %--------------------TDA image--------------------
 % La estructura a utilizar para este TDA es una lista de la siguiente manera:

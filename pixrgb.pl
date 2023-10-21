@@ -1,4 +1,4 @@
-:- module(pixrgb_21081166_LizamaGonzalez, [pixrgb/7, ispixrgb/1, getXr/2, getYr/2, getR/2, getG/2, getB/2, getDr/2, setXr/3, setYr/3, getRGBD/2]).
+:- module(pixrgb, [pixrgb/7, ispixrgb/1, getXr/2, getYr/2, getR/2, getG/2, getB/2, getDr/2, setXr/3, setYr/3, getRGBD/2]).
 %--------------------TDA pixrgb--------------------
 % La estructura a utilizar para este TDA es una lista de la siguiente manera:
 % (X, Y, R, G, B, Depth)

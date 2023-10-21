@@ -1,4 +1,4 @@
-:- include(image_21081166_LizamaGonzalez).
+:- include(image).
 %--------------------Archivo de pruebas laboratorio 2 Paradigmas de Programación--------------------
 
 /*

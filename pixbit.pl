@@ -1,4 +1,4 @@
-:- module(pixbit_21081166_LizamaGonzalez, [pixbit/5, ispixbit/1, getXb/2, getYb/2, getBit/2, getDb/2, setXb/3, setYb/3]).
+:- module(pixbit, [pixbit/5, ispixbit/1, getXb/2, getYb/2, getBit/2, getDb/2, setXb/3, setYb/3]).
 %--------------------TDA pixbit--------------------
 % La estructura a utilizar para este TDA es una lista de la siguiente manera:
 % (X, Y, Bit, Depth)
